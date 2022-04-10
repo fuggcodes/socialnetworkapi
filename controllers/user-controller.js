@@ -72,6 +72,18 @@ const userController = {
       .catch((err) => res.status(400).json(err));
   },
 
-
+  // Friends list /api/users/:userId/friends/:friendId
+  friendslistAdd({ params }, res) {
+    User.findOneAndUpdate(
+      {
+        id_: params.id,
+      },
+      { $push: { friends: params.friendsId } },
+      { new: true }
+    )
+      .then((dbUserData) => res.json(dbUserData))
+      .catch((err) => res.status(400).json(err));
+  },
+};
 
 module.exports = userController;
