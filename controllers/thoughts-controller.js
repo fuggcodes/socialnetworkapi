@@ -32,3 +32,12 @@ const thoughtsController = {
         res.status(400).json(err);
       });
   },
+
+  // post to create a new thought
+  createThoughts({ body }, res) {
+    Thoughts.create(body)
+      .then((dbThoughtData) => res.json(dbThoughtData))
+      .catch((err) => res.status(400).json(err));
+  },
+
+ 
